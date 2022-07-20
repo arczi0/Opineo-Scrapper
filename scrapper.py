@@ -91,7 +91,7 @@ for i in range(len(urls)):
 
         f.close()
 
-    time.sleep(60)
+    time.sleep(10)
 
 
 
