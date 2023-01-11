@@ -4,8 +4,17 @@ from bs4 import BeautifulSoup as soup
 from csv import writer
 import time
 from os.path import exists
+import argparse
 
-url = 'https://www.opineo.pl/opinie-264300526-debica-frigo-2-185-65r15-88t.html'
+parser = argparse.ArgumentParser()
+parser.add_argument('--url', type=str, required=True, help='Product URL from Opineo.pl')
+parser.add_argument('--delay', type=int, required=False, default=5, help='Time in seconds between requests')
+args = parser.parse_args()
+
+#example url
+#url = 'https://www.opineo.pl/opinie-264300526-debica-frigo-2-185-65r15-88t.html'
+url = args.url
+delay = args.delay
 
 def get_reviews(url):
     nourl = 2
@@ -94,7 +103,7 @@ def get_reviews(url):
 
                 f.close()
 
-        time.sleep(5)
+        time.sleep(delay)
 
 get_reviews(url=url)
 
